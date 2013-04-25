@@ -1,0 +1,64 @@
+html {
+  background: #CBD2DA;
+}
+
+.wrapper {
+  width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.content {
+  width: 100%;
+  background: #fff;
+  padding: 10px 30px;
+}
+
+.nav-main {
+  margin: 0;
+  padding: 0;
+}
+.nav-main li {
+  display: inline-block;
+}
+
+.nav-main a {
+  background-image: url('menu-sprite.jpg');
+  background-repeat: no-repeat;
+  display: block;
+  height: 60px;
+  text-indent: -9999px;
+}
+
+.nav-main a.home {
+  background-position: -8px -5px;
+  width: 115px;
+}
+.nav-main a.home:hover {
+  background-position: -5px -75px;
+}
+.nav-main .selected a.home {
+  background-position: -5px -145px;
+}
+
+.nav-main a.about {
+  background-position: -125px -5px;
+  width: 120px;
+}
+.nav-main a.about:hover {
+  background-position: -125px -75px;
+}
+.nav-main .selected a.about {
+  background-position: -125px -145px;
+}
+
+.nav-main a.contact {
+  background-position: -250px -5px;
+  width: 160px;
+}
+.nav-main a.contact:hover {
+  background-position: -250px -75px;
+}
+.nav-main .selected a.contact {
+  background-position: -250px -145px;
+}
