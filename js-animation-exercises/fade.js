@@ -45,8 +45,8 @@ function crossFade(obj1, obj2, durationInSeconds) {
 // adapted from http://stackoverflow.com/questions/4880860/ease-out-using-settimeout
 // time passed and total time have to be the same unit (e.g. seconds)
 // returns 0 - 1 based on timePassed value with an "ease in ease out" behavior
-function simpleEasing(timePassed, totalTime) {
-  return (1 - Math.cos((timePassed / totalTime) * Math.PI)) / 2;
+function simpleEasing(tVal) {
+  return (1 - Math.cos(tVal * Math.PI)) / 2;
 }
 
 
@@ -54,17 +54,32 @@ function fadeEase(newValue) {
   this.style.opacity = parseFloat(newValue, 10);
 }
 
-function crossFadeEase(obj1, obj2, durationInSeconds) {
+// Crossfades from obj1 => obj2.
+// easingType MUST be a function that takes a time value from [0,1],
+//  and will return an output value from [0,1]
+
+function crossFadeEase(obj1, obj2, durationInSeconds, easingType) {
   setStart(obj1, obj2);
   var framesNeeded = durationInSeconds * FRAMES_PER_SECOND;
   var timeStepInMS = (1 / FRAMES_PER_SECOND) * 1000;
+  // Current clock time, in milliseconds
   var currentTimeInMS = 0;
+  // Time as expressed from [0,1]
+  var tVal = 0;
+
+  // This sets up each frame needed using the "later" function
+  //   provided by Mr. Douglas Crockford
 
   while(framesNeeded > 0) {
     currentTimeInMS = parseFloat(currentTimeInMS, 10) + timeStepInMS;
 
-    var newOutVal = 1 - simpleEasing(currentTimeInMS, durationInSeconds * 1000);
-    var newInVal = simpleEasing(currentTimeInMS, durationInSeconds * 1000);
+    tVal = currentTimeInMS / (durationInSeconds * 1000);
+
+    // var newOutVal = 1 - simpleEasing(tVal);
+    // var newInVal = simpleEasing(tVal);
+
+    var newOutVal = 1 - easingType(tVal);
+    var newInVal = easingType(tVal);
 
     // console.log("Time: " + currentTimeInMS + ", New Out Val: " + newOutVal);
     // console.log("Time: " + currentTimeInMS + ", New In Val: " + newInVal);

@@ -3,8 +3,10 @@
 // Add class="carousel" to a container that holds all of your images,
 //  which should be absolutely positioned in the same spot.
 // durationInSeconds should be the duration you want for each cross fade.
+// easingType MUST be a function that takes a time value from [0,1],
+//  and will return an output value from [0,1]
 
-function Carousel(container, durationInSeconds) {
+function Carousel(container, durationInSeconds, easingType) {
   var images = container.getElementsByTagName('img');
   var numImages = images.length;
   this.container = container;
@@ -84,7 +86,7 @@ function Carousel(container, durationInSeconds) {
     // }
 
     // get our fade on
-    crossFadeEase(images[currentIndex], images[nextIndex], durationInSeconds);
+    crossFadeEase(images[currentIndex], images[nextIndex], durationInSeconds, easingType);
     // update currentIndex to what we switched to
     currentIndex = nextIndex;
   }
@@ -102,7 +104,7 @@ function Carousel(container, durationInSeconds) {
     updateIdentifiers(prevIndex);
 
     // get our fade on
-    crossFadeEase(images[currentIndex], images[prevIndex], durationInSeconds);
+    crossFadeEase(images[currentIndex], images[prevIndex], durationInSeconds, easingType);
     // update currentIndex to what we switched to
     currentIndex = prevIndex;
 
@@ -131,7 +133,7 @@ function Carousel(container, durationInSeconds) {
     // update imageIdentifiers
     updateIdentifiers(toIndex);
     // get our fade on
-    crossFadeEase(images[currentIndex], images[toIndex], durationInSeconds);
+    crossFadeEase(images[currentIndex], images[toIndex], durationInSeconds, easingType);
     // update currentIndex to what we switched to
     currentIndex = toIndex;
 
@@ -204,8 +206,14 @@ function Carousel(container, durationInSeconds) {
     }
   }
 
+  function setContainerDimensions() {
+    container.style.height = images[0].height;
+    container.style.width = images[0].width;
+  }
+
   addControls();
   this.imageIdentifiers = addImageIdentifiers();
   var imageIdentifiers = this.imageIdentifiers;
   initializeOpacities();
+  setContainerDimensions();
 }

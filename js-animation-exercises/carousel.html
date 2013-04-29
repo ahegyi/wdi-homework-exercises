@@ -6,6 +6,7 @@
 </head>
 <body>
   <h1>Carousel Exercise. Artisanally crafted by hand. No jQuery! No fixies!</h1>
+
   <div class="wrapper">
 
     <div class="carousel">
@@ -15,16 +16,26 @@
       <img src="IMG_0817.jpg">
     </div>
 
+    <h3>Features</h3>
+    <ul>
+      <li>Custom Easings (different kinds of fades)</li>
+      <li>Custom fade duration</li>
+      <li>Automatic 'I am here!' circles applied to your carousel</li>
+      <li>Click on the 'I am here!' circles, or use the prev/next buttons to move back and forth</li>
+      <li>Use any kind/number of images</li>
+    </ul>
+
   </div> 
 
   <script src="later.js"></script>
+  <script src="easing.js"></script>
   <script src="carousel.js"></script>
   <script src="fade.js"></script>
 
   <script type="text/javascript">
     // for this example we only need one carousel
     carousels = document.getElementsByClassName("carousel");
-    c = new Carousel(carousels[0], 2.5);
+    c = new Carousel(carousels[0], 0.7, EasingFunctions.easeInOutSine);
   </script>
 </body>
 </html>
