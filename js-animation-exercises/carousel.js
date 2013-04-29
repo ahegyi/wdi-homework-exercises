@@ -1,6 +1,10 @@
 /* Basic Carousel. Creates one with all of the images present inside container. */
 
-function Carousel(container) {
+// Add class="carousel" to a container that holds all of your images,
+//  which should be absolutely positioned in the same spot.
+// durationInSeconds should be the duration you want for each cross fade.
+
+function Carousel(container, durationInSeconds) {
   var images = container.getElementsByTagName('img');
   var numImages = images.length;
   this.container = container;
@@ -80,7 +84,7 @@ function Carousel(container) {
     // }
 
     // get our fade on
-    crossFade(images[currentIndex], images[nextIndex]);
+    crossFadeEase(images[currentIndex], images[nextIndex], durationInSeconds);
     // update currentIndex to what we switched to
     currentIndex = nextIndex;
   }
@@ -98,7 +102,7 @@ function Carousel(container) {
     updateIdentifiers(prevIndex);
 
     // get our fade on
-    crossFade(images[currentIndex], images[prevIndex]);
+    crossFadeEase(images[currentIndex], images[prevIndex], durationInSeconds);
     // update currentIndex to what we switched to
     currentIndex = prevIndex;
 
@@ -127,7 +131,7 @@ function Carousel(container) {
     // update imageIdentifiers
     updateIdentifiers(toIndex);
     // get our fade on
-    crossFade(images[currentIndex], images[toIndex]);
+    crossFadeEase(images[currentIndex], images[toIndex], durationInSeconds);
     // update currentIndex to what we switched to
     currentIndex = toIndex;
 
@@ -205,8 +209,3 @@ function Carousel(container) {
   var imageIdentifiers = this.imageIdentifiers;
   initializeOpacities();
 }
-
-
-// for this example we only need one carousel
-carousels = document.getElementsByClassName("carousel");
-c = new Carousel(carousels[0]);

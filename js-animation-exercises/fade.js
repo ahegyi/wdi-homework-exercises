@@ -29,25 +29,29 @@ function setEnd(obj1, obj2) {
 
 // both obj1 and obj2 must have the same position for this to work
 // and obj1 must have a higher z-index to start
-function crossFade(obj1, obj2) {
+function crossFade(obj1, obj2, durationInSeconds) {
   setStart(obj1, obj2);
-  
-  var timer1 = setInterval(function(){ fadeOut(obj1); }, 1000 / FRAMES_PER_SECOND);
-  var timer2 = setInterval(function(){ fadeIn(obj2); }, 1000 / FRAMES_PER_SECOND);
 
-  setTimeout(function(){ clearInterval(timer1); clearInterval(timer2); setEnd(obj1, obj2); }, 1/((OPACITY_TWEEN_VALUE * FRAMES_PER_SECOND) / 1000));
+  var timer1 = setInterval(function(){ fadeOut(obj1); }, (durationInSeconds * 1000) / FRAMES_PER_SECOND);
+  var timer2 = setInterval(function(){ fadeIn(obj2); }, (durationInSeconds * 1000) / FRAMES_PER_SECOND);
+
+  setTimeout(function(){ clearInterval(timer1); clearInterval(timer2); setEnd(obj1, obj2); }, 1/((OPACITY_TWEEN_VALUE * FRAMES_PER_SECOND) / (durationInSeconds * 1000)));
 }
 
 
 /* EASING FUNCTIONS */
 
-/* NOT WORKING RIGHT NOW! */
 
 // adapted from http://stackoverflow.com/questions/4880860/ease-out-using-settimeout
 // time passed and total time have to be the same unit (e.g. seconds)
 // returns 0 - 1 based on timePassed value with an "ease in ease out" behavior
 function simpleEasing(timePassed, totalTime) {
   return (1 - Math.cos((timePassed / totalTime) * Math.PI)) / 2;
+}
+
+
+function fadeEase(newValue) {
+  this.style.opacity = parseFloat(newValue, 10);
 }
 
 function crossFadeEase(obj1, obj2, durationInSeconds) {
@@ -62,12 +66,11 @@ function crossFadeEase(obj1, obj2, durationInSeconds) {
     var newOutVal = 1 - simpleEasing(currentTimeInMS, durationInSeconds * 1000);
     var newInVal = simpleEasing(currentTimeInMS, durationInSeconds * 1000);
 
-    /* The values are correct, but how do we translate these values to time
-        in Javascript?? Not working so well since callbacks can't deal with
-        arguments (i.e. for setTimeout)
-    */
     // console.log("Time: " + currentTimeInMS + ", New Out Val: " + newOutVal);
     // console.log("Time: " + currentTimeInMS + ", New In Val: " + newInVal);
+
+    obj1.later(currentTimeInMS, fadeEase, newOutVal);
+    obj2.later(currentTimeInMS, fadeEase, newInVal);
 
     // var outClass = new FadeOutEaseClass(obj1, newOutVal);
     // var inClass = new FadeInEaseClass(obj2, newInVal);
@@ -78,6 +81,11 @@ function crossFadeEase(obj1, obj2, durationInSeconds) {
     framesNeeded -= 1;
   }
 }
+
+
+
+
+// This is a relic that I tried. It didn't work.
 
 // function FadeOutEaseClass(obj, newValue) {
 //   this.obj = obj;
@@ -98,6 +106,3 @@ function crossFadeEase(obj1, obj2, durationInSeconds) {
 //     thisObj.style.opacity = parseFloat(thisNewValue, 10);
 //   };
 // }
-
-
-
