@@ -1,0 +1,109 @@
+.wrapper {
+  width: 648px;
+  position: relative;
+  margin: auto;
+}
+
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.carousel {
+  position: relative;
+}
+
+.image-identifiers {
+  position: absolute;
+  height: 20px;
+  top: 20px;
+  right: 20px;
+  left: 20px;
+  z-index: 100;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  color: rgba(0,0,0,0.6);
+}
+
+.image-identifier {
+  position: relative;
+  float: left;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0,0,0,0.3);
+  border-radius: 20px;
+  margin-right: 10px;
+  background-color: rgba(255,255,255,0.4);
+  cursor: hand;
+  cursor: pointer;
+
+  transition: 0.25s;
+  -webkit-transition: 0.25s; /* Safari */
+
+  /* This gets rid of some bugs when clicking the control */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.image-identifier:hover, .image-identifier.current {
+  background-color: rgba(255,255,255,0.7);
+  color: rgba(0,0,0,0.8);
+  border-color: rgba(0,0,0,0.6);
+}
+
+.control {
+  position: absolute;
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  /*  top: 196px; */
+  z-index: 100;
+  cursor: hand;
+  cursor: pointer;
+
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  color: rgba(0,0,0,0.6);
+
+  transition: 0.25s;
+  -webkit-transition: 0.25s; /* Safari */
+
+  /* This gets rid of some bugs when clicking the control */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.control:hover {
+  background-color: rgba(255,255,255,0.6);
+  color: rgba(0,0,0,0.8);
+}
+
+.control-left {
+  left: 20px;
+}
+
+.control-right {
+  right: 20px;
+}
+
+.control p {
+  margin: 2px 0;
+  padding: 0;
+}
+
+.control-left p {
+  margin-left: 14px;
+}
+.control-right p {
+  margin-left: 15px;
+}
