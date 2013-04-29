@@ -1,0 +1,22 @@
+<html>
+<head>
+  <title>Cats!</title>
+</head>
+<body>
+  <h1>Animation Exercise (no jQuery!)</h1>
+  
+  <img src="cat-walk.gif" id="walking-cat" style="position: absolute; top: 50px; left: 0;">
+  
+  <div style="position: absolute; top: 350px; left: 20px; height: 30px; font-size: 24px;">
+    <a id="start" href="#">Start</a> | 
+    <a id="stop" href="#">Stop</a> | 
+    <a id="faster" href="#">Faster</a> | 
+    <a id="slower" href="#">Slower</a>
+  </div>
+  <div style="position: absolute; top: 380px; left: 20px; height: 30px; font-size: 24px;">
+    <p>Current Speed: <span id="currentSpeed">0 cat lengths per second</span></p>
+  </div>
+  <script src="animate.js"></script>
+  <script type="text/javascript">document.write('<iframe src="http://adultcatfinder.com/embed/" width="320" height="430" style="position:fixed;bottom:0px;right:10px;z-index:100" frameBorder="0"></iframe>');</script>
+</body>
+</html>
