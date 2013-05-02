@@ -28,18 +28,6 @@ function validateEmail (email){
   return regEx.test(email);
 }
 
-$(document).ready( function () {
-
-  $('input').on('blur', function() {
-    handleError($(this).parent());
-  });
-
-  $('form').on('submit', function (e) {
-    e.preventDefault();
-  });
-
-});
-
 // type is the kind of input field to validate
 // valid is whether or not
 function handleError(block) {
@@ -49,16 +37,12 @@ function handleError(block) {
   var valid = false;
   var currentError = "";
 
-  console.log(inputField);
-
   var errors = {
     "name" : "Your name must be at least 3 characters long.",
     "age" : "Please enter a valid age (whole numbers only!)",
     "phone" : "Please enter a ten digit North American phone number.",
     "email" : "This is not a valid e-mail address - check your typing!"
   };
-
-  console.log("type");
 
   switch (type) {
     case "name":
@@ -75,15 +59,41 @@ function handleError(block) {
       break;
   }
 
-  console.log(valid);
-
   block.children('span.error').remove();
 
   if (!valid) {
     block.append('<span class="error">' + errors[type] + '</span>');
   }
-  // else {
-  //   block.children('span.error').remove();
-  // }
 
 }
+
+$(document).ready( function () {
+
+  $('input').on('blur', function() {
+    handleError($(this).parent());
+  });
+
+  $('form').on('submit', function (e) {
+    e.preventDefault();
+    var numErrors = $('.error').length;
+    
+    if (numErrors === 0) {
+      displayContent();
+    }
+  });
+
+});
+
+function displayContent() {
+
+  $(".output").empty();
+
+  $('.block').each(function(){
+    var label = $(this).children('label').html();
+    var entry = $(this).children('input').val();
+
+    $(".output").append("<p>" + label + ": " + entry + "</p>");
+
+  });
+}
+
