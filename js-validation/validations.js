@@ -8,6 +8,20 @@ function validateAge (age){
   return age % 1 === 0 && age > 0 && age < 125;
 }
 
+function validatePhone(phone) {
+  // Thanks to http://regexlib.com/REDetails.aspx?regexp_id=1865 for the NANP compatible regex
+  var phoneRegex = /(?:\([2-9][0-8]\d\)\ ?|[2-9][0-8]\d[\-\ \.\/]?)[2-9]\d{2}[- \.\/]?\d{4}\b/;
+
+  var phoneDigits = phone.replace(/[\D]/g,"");
+
+  if (typeof(phone) === "string" && phoneRegex.test(phoneDigits)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 // Validates a valid email
 function validateEmail (email){
   var regEx = /\b[^@]+@[^@]+\.[^@]+\b/;
