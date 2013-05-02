@@ -7,3 +7,9 @@ function validateName(name) {
 function validateAge (age){
   return age % 1 === 0 && age > 0 && age < 125;
 }
+
+// Validates a valid email
+function validateEmail (email){
+  var regEx = /\b[^@]+@[^@]+\.[^@]+\b/;
+  return regEx.test(email);
+}
