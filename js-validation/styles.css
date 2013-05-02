@@ -2,3 +2,11 @@
   margin: 50px auto;
   width: 80%;
 }
+
+.error {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: 4px;
+  color: #d00;
+  font-weight: bold;
+}

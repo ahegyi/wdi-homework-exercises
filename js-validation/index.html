@@ -4,6 +4,10 @@
   <!-- NetDNA Hosted Bootstrap -->
   <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="styles.css">
+
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
   <script type="text/javascript" src="validations.js"></script>
 </head>
 <body>
@@ -12,30 +16,38 @@
 
   <form action="#">
     <fieldset>
+
       <legend>Validation</legend>
 
-      <div>
+      <div id="nameBlock">
         <label for="name">Name</label>
         <input id="name" name="name" type="text">
       </div>
 
-      <label for="age">Age</label>
-      <input id="age" name="age" type="text">
+      <div id="ageBlock">
+        <label for="age">Age</label>
+        <input id="age" name="age" type="text">
+      </div>
 
-      <label for="phone">Phone</label>
-      <input id="phone" name="phone" type="tel">
+      <div id="phoneBlock">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel">
+      </div>
 
-      <div>
+      <div id="emailBlock">
         <label for="email">Email</label>
         <input id="email" name="email" type="email">
       </div>
 
       <div>
-        <input id="submit" type="submit" value="Update">
+        <button id="submit" class="btn">Update</button>
       </div>
+
     </fieldset>
   </form>
 
+  <div class="output">
+  </div>
 
 
 </div>
